@@ -66,7 +66,7 @@ int RT::Connector::connect(RT::block_connection_t connection)
       && this->find_cycle(connection, connection.src) == -1)
   {
     ERROR_MSG("RT::Connector : The Connection would have caused a cycle");
-    return -1;
+    // return -1;
   }
 
   if (!(this->connected(connection))) {
