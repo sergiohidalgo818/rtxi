@@ -44,7 +44,8 @@ int RT::OS::initiate(RT::OS::Task* task)
   int retval = mlockall(MCL_CURRENT | MCL_FUTURE);  // NOLINT
   strerror_r(errno, strbuf.data(), strbuf.size());
   if (retval != 0) {
-    ERROR_MSG("RT::OS(POSIX)::initiate : failed to lock memory : {}", strbuf);
+    ERROR_MSG("RT::OS(PREMPT_RT)::initiate : failed to lock memory : {}",
+              strbuf);
   }
   realtime_key = true;
   task->period = RT::OS::DEFAULT_PERIOD;

@@ -127,8 +127,9 @@ void RT::OS::preemptRTFifo::poll()
   this->errcode = ::poll(this->xbuf_poll_fd.data(), 2, -1);
   if (errcode < 0) {
     std::string errbuff(255, '\0');
-    ERROR_MSG("RT::OS::FIFO(evl)::poll : returned with failure code {} : ",
-              errcode);
+    ERROR_MSG(
+        "RT::OS::FIFO(PREMPT_RT)::poll : returned with failure code {} : ",
+        errcode);
     ERROR_MSG("{}", strerror_r(this->errcode, errbuff.data(), errbuff.size()));
   } else if ((this->xbuf_poll_fd[1].revents & POLLIN) != 0) {
     this->closed = true;
